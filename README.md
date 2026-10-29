@@ -1,73 +1,64 @@
-# Welcome to your Lovable project
+# Cure Query Bot
 
-## Project info
+Cure Query Bot is a web-based healthcare information chatbot built with React, TypeScript, Vite, and Supabase Edge Functions. It provides educational information about common health topics through a chat interface.
 
-**URL**: https://lovable.dev/projects/32292448-aaca-4ee6-99cd-65b1a04dc2df
+## Features
 
-## How can I edit this code?
+- Conversational interface with message history and loading states
+- Supabase Edge Function integration for generated responses
+- Responsive React UI with reusable components
+- Toast feedback and a visible health-information disclaimer
 
-There are several ways of editing your application.
+## Technology
 
-**Use Lovable**
+- React 18 and TypeScript
+- Vite
+- Tailwind CSS and shadcn/ui components
+- Supabase JavaScript client and Edge Functions
+- React Query, React Router, and ESLint
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/32292448-aaca-4ee6-99cd-65b1a04dc2df) and start prompting.
+## Run locally
 
-Changes made via Lovable will be committed automatically to this repo.
+Prerequisites: Node.js 20 LTS or another supported LTS version and npm.
 
-**Use your preferred IDE**
-
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
-
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
-
-Follow these steps:
-
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+```bash
+npm ci
+cp .env.example .env
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+On Windows PowerShell, copy the example with:
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+```powershell
+Copy-Item .env.example .env
+```
 
-**Use GitHub Codespaces**
+Set the public Supabase project values in `.env`, then start the Vite dev server. Never place a Supabase service-role key, provider API key, or other server secret in a `VITE_*` variable; Vite exposes those values to browser code.
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Environment variables
 
-## What technologies are used for this project?
+| Variable | Purpose |
+| --- | --- |
+| `VITE_SUPABASE_URL` | Supabase project URL |
+| `VITE_SUPABASE_PUBLISHABLE_KEY` | Supabase publishable/anon key intended for client-side use with appropriate RLS and function authorization |
 
-This project is built with:
+The chatbot calls the `healthcare-chat` Supabase Edge Function. Configure provider credentials as server-side Edge Function secrets, not in the frontend.
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+## Scripts
 
-## How can I deploy this project?
+```bash
+npm run dev       # development server
+npm run build     # production build
+npm run lint      # ESLint checks
+npm run preview   # preview the built application
+```
 
-Simply open [Lovable](https://lovable.dev/projects/32292448-aaca-4ee6-99cd-65b1a04dc2df) and click on Share -> Publish.
+## CI
 
-## Can I connect a custom domain to my Lovable project?
+GitHub Actions installs dependencies with the committed lockfile, runs ESLint, and creates a production build on pushes to `main` and this improvement branch, and on pull requests to `main`.
 
-Yes, you can!
+## Health and privacy disclaimer
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+This application is for general educational information only. It is not a substitute for professional medical advice, diagnosis, or treatment. For urgent or severe symptoms, contact local emergency services or a qualified healthcare professional.
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/features/custom-domain#custom-domain)
+Do not submit identifiable personal health information unless the deployment's privacy, access-control, logging, retention, and provider data-handling practices have been reviewed and approved. Never commit secrets or real patient data.
